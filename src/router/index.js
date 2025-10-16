@@ -96,10 +96,16 @@ export const constantRoutes = [
     redirect: '/nested/menu1',
     name: 'Nested',
     meta: {
-      title: 'Nested',
+      title: '대사관리',
       icon: 'nested'
     },
     children: [
+      {
+        path: 'manualRegister',
+        component: () => import('@/views/nested/manualRegister/index'),
+        name: '대사등록',
+        meta: { title: '대사등록화면' }
+      },
       {
         path: 'menu1',
         component: () => import('@/views/nested/menu1/index'), // Parent router-view
@@ -139,12 +145,6 @@ export const constantRoutes = [
             meta: { title: 'Menu1-3' }
           }
         ]
-      },
-      {
-        path: 'menu2',
-        component: () => import('@/views/nested/menu2/index'),
-        name: 'Menu2',
-        meta: { title: 'menu2' }
       }
     ]
   },
