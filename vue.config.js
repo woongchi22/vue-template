@@ -36,7 +36,36 @@ module.exports = {
       warnings: false,
       errors: true
     },
-    before: require('./mock/mock-server.js')
+    // 프록시 추가
+    proxy: {
+      // 개발 환경용 프록시
+      '/dev-api': {
+        target: 'http://localhost:3000', // API 서버 주소
+        changeOrigin: true, // CORS 우회
+        pathRewrite: { '^/dev-api': '' }, // '/api' 경로 제거
+        ws: true, // 웹소켓 지원
+        secure: false // HTTPS를 사용하는 경우 true로 설정
+      },
+
+      // 스테이징 환경용 프록시
+      '/stage-api': {
+        target: 'http://localhost:3000', // API 서버 주소
+        changeOrigin: true, // CORS 우회
+        pathRewrite: { '^/stage-api': '' }, // '/api' 경로 제거
+        ws: true, // 웹소켓 지원
+        secure: false // HTTPS를 사용하는 경우 true로 설정
+      },
+
+      // 운영 환경용 프록시
+      '/prod-api': {
+        target: 'http://localhost:3000', // API 서버 주소
+        changeOrigin: true, // CORS 우회
+        pathRewrite: { '^/prod-api': '' }, // '/api' 경로 제거
+        ws: true, // 웹소켓 지원
+        secure: false // HTTPS를 사용하는 경우 true로 설정
+      }
+    }
+    // before: require('./mock/mock-server.js')
   },
   configureWebpack: {
     // provide the app's title in webpack's name field, so that

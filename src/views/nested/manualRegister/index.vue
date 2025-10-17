@@ -54,7 +54,7 @@ export default {
         service: '',
         department: '',
         contact: '',
-        tableCount: 0
+        tableCount: 1
       },
       rules: {
         manualName: [{ required: true, message: '대사명을 입력하세요', trigger: 'blur' }],
